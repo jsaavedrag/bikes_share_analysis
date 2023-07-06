@@ -23,11 +23,11 @@ def get_filters():
     while city.lower() not in ('chicago', 'new york', 'washington'):
         city = input('Please select one option from the list:\nChicago, New York, or Washington\n')
 
-
     # get user input for month (all, january, february, ... , june)
     month = input('Would you like to filter the data by month (january, february, march, april, may, or june), or not at all? Type "all" for no filter.\n')
     while month.lower() not in ('january', 'february', 'march', 'april', 'may', 'june', 'all'):
         month = input('Please select one option from the list:\nall, january, february, march, april, may, or june\n')
+
     # get user input for day of week (all, monday, tuesday, ... sunday)monday tuesday wednesday thursday friday saturday sunday
     day = input('Would you like to filter by day (monday, tuesday, wednesday, thursday, friday, saturday, or sunday)? Type "all" for no filter.\n')
     while day.lower() not in ('all', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'):
@@ -66,6 +66,7 @@ def time_stats(df):
     """Displays statistics on the most frequent times of travel."""
 
     print('\nCalculating The Most Frequent Times of Travel...\n')
+    # start time to measure how long it takes to calculate the statistics
     start_time = time.time()
 
     # display the most common month
@@ -77,6 +78,7 @@ def time_stats(df):
     # display the most common start hour
     print('Most common start hour:', df['dayofweek'].mode()[0])
 
+    # display how long it took to calculate the statistics
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
@@ -106,6 +108,7 @@ def trip_duration_stats(df):
     """Displays statistics on the total and average trip duration."""
 
     print('\nCalculating Trip Duration...\n')
+    # start time to measure how long it takes to calculate the statistics
     start_time = time.time()
 
     # display total travel time
@@ -114,6 +117,7 @@ def trip_duration_stats(df):
     # display mean travel time
     print('Mean travel time:', df['Trip Duration'].mean())
 
+    # display how long it took to calculate the statistics
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
@@ -122,6 +126,7 @@ def user_stats(df):
     """Displays statistics on bikeshare users."""
 
     print('\nCalculating User Stats...\n')
+    # start time to measure how long it takes to calculate the statistics
     start_time = time.time()
 
     # Display counts of user types
@@ -137,6 +142,7 @@ def user_stats(df):
         print('Most recent year of birth:', int(df['Birth Year'].max()))
         print('Most common year of birth:', int(df['Birth Year'].mode()[0]))
 
+    # display how long it took to calculate the statistics
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
@@ -169,9 +175,11 @@ def main():
         user_stats(df)
 
         row = 0
+        # Prompts the user if they want to see 5 lines of raw data
         while data_request():
             print(df.iloc[row:row+5, :-3])
             row += 5
+            # Stop the program when there is no more raw data to display.
             if row > len(df.index):
                 break
 
