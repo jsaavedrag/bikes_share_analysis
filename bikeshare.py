@@ -19,21 +19,21 @@ def get_filters():
     """
     print('Hello! Let\'s explore some US bikeshare data!')
     # get user input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs
-    city = input('Would you like to see data for Chicago, New York, or Washington?\n')
-    while city.lower() not in ('chicago', 'new york', 'washington'):
+    city = input('Would you like to see data for Chicago, New York, or Washington?\n').lower()
+    while city not in ('chicago', 'new york', 'washington'):
         city = input('Please select one option from the list:\nChicago, New York, or Washington\n')
 
     # get user input for month (all, january, february, ... , june)
-    month = input('Would you like to filter the data by month (january, february, march, april, may, or june), or not at all? Type "all" for no filter.\n')
-    while month.lower() not in ('january', 'february', 'march', 'april', 'may', 'june', 'all'):
+    month = input('Would you like to filter the data by month (january, february, march, april, may, or june), or not at all? Type "all" for no filter.\n').lower()
+    while month not in ('january', 'february', 'march', 'april', 'may', 'june', 'all'):
         month = input('Please select one option from the list:\nall, january, february, march, april, may, or june\n')
 
     # get user input for day of week (all, monday, tuesday, ... sunday)monday tuesday wednesday thursday friday saturday sunday
-    day = input('Would you like to filter by day (monday, tuesday, wednesday, thursday, friday, saturday, or sunday)? Type "all" for no filter.\n')
-    while day.lower() not in ('all', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'):
+    day = input('Would you like to filter by day (monday, tuesday, wednesday, thursday, friday, saturday, or sunday)? Type "all" for no filter.\n').lower()
+    while day not in ('all', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'):
         day = input('Please select one option from the list:\nall, monday, tuesday, wednesday, thursday, friday, saturday, or sunday\n')
 
-    return city.lower(), month.lower(), day.lower()
+    return city, month, day
 
 
 def load_data(city, month, day):
