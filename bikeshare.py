@@ -151,12 +151,14 @@ def data_request():
         False - Otherwise.
     """
 
-    raw_data = input('\nWould you like to see 5 lines of raw data? Enter yes or no.\n')
-    while raw_data.lower() not in ('yes', 'no'):
+    raw_data = input('\nWould you like to see 5 lines of raw data? Enter yes or no.\n').lower()
+    while raw_data not in ('yes', 'no'):
         raw_data = input('Please select yes or no\n')
-    return True if raw_data.lower() == 'yes' else False
 
-
+    if raw_data == 'yes':
+        return True
+    else:
+        return False
 
 def main():
     while True:
